@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx
+    env: staging 
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+        os: linux
+    spec:
+      containers:
+      - name: web-color
+        image: kodekloud/webapp-color
+        env:
+        - name: APP_COLOR
+          value: red
+        volumeMounts:
+        - mountPath: /var/www/html
+          name: web-data
+        - mountPath: /etc/apahe2
+          name: apache-conf
+
+      volumes:
+      - name: web-data
+        hostPath: 
+         path: /umniah/projects/html
+      - name: apache-conf
+        hostPath:
+            path: /umniah/projects/conf
+   
+
+
