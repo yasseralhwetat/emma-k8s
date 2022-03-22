@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: web-color
-        image: kodekloud/webapp-color
+        image: kodekloud/webapp-color:latest
         env:
         - name: APP_COLOR
           value: red
@@ -27,7 +27,8 @@ spec:
           name: web-data
         - mountPath: /etc/apahe2
           name: apache-conf
-
+        - mountPath: /mnt
+          name: mnt-mount
       volumes:
       - name: web-data
         hostPath: 
